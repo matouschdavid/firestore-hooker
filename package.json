@@ -1,0 +1,32 @@
+{
+  "name": "firestore-hooker",
+  "version": "1.0.0",
+  "description": "Simple react hooks for Firebase Firestore",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matouschdavid/firestore-hooker.git"
+  },
+  "author": "David Matousch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matouschdavid/firestore-hooker/issues"
+  },
+  "homepage": "https://github.com/matouschdavid/firestore-hooker#readme",
+  "main": "dist/hooks.js",
+  "types": "types/hooks.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "firebase": "^10.12.2",
+    "react": "^18.3.1",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3"
+  }
+}
