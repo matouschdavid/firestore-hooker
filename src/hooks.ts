@@ -10,11 +10,11 @@ import {
 } from "@firebase/firestore";
 import {useEffect, useState} from "react";
 
-const errorMessage = 'Firestore not initialized. Call initFirestore(firestore) before using this hook.';
+const errorMessage = 'Firestore not initialized. Call initFirestoreHooker(firestore) before using this hook.';
 
 let firestore: Firestore;
 
-export const initFirestore = (firestoreInstance: Firestore) => {
+export const initFirestoreHooker = (firestoreInstance: Firestore) => {
     firestore = firestoreInstance;
 }
 
