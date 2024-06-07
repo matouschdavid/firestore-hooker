@@ -12,20 +12,20 @@ import {useEffect, useState} from "react";
 
 const errorMessage = 'Firestore not initialized. Call initFirestoreHooker(firestore) before using this hook.';
 
-let firestore: Firestore;
+let db: Firestore;
 
 export const initFirestoreHooker = (firestoreInstance: Firestore) => {
-    firestore = firestoreInstance;
+    db = firestoreInstance;
 }
 
 const checkFirestore = () => {
-    if(!firestore) throw new Error(errorMessage);
+    if(!db) throw new Error(errorMessage);
 }
 
 export const useGetDocument = <T>(collectionPath: string, docId: string, converter: FirestoreDataConverter<T>) => {
     console.log('useGetDocument');
     checkFirestore();
-    console.log('firestore', firestore);
+    console.log('firestore', db);
 
     const [data, setData] = useState<T>();
     const [loading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ export const useGetDocument = <T>(collectionPath: string, docId: string, convert
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const docRef = doc(firestore, collectionPath, docId).withConverter(converter);
+                const docRef = doc(db, collectionPath, docId).withConverter(converter);
                 const data = await getDoc(docRef);
                 setData(data.data());
             } catch (err: any) {
@@ -53,7 +53,7 @@ export const useGetDocument = <T>(collectionPath: string, docId: string, convert
 export const useGetDocumentUpdates = <T>(collectionPath: string, docId: string, converter: FirestoreDataConverter<T>) => {
     console.log('useGetDocument');
     checkFirestore();
-    console.log('firestore', firestore);
+    console.log('firestore', db);
 
     const [data, setData] = useState<T>();
     const [loading, setLoading] = useState(true);
@@ -63,7 +63,7 @@ export const useGetDocumentUpdates = <T>(collectionPath: string, docId: string, 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const docRef = doc(firestore, collectionPath, docId).withConverter(converter);
+                const docRef = doc(db, collectionPath, docId).withConverter(converter);
                 const unsubscribe = onSnapshot(docRef, (doc) => {
                     setData(doc.data());
                 });
@@ -84,17 +84,17 @@ export const useGetDocumentUpdates = <T>(collectionPath: string, docId: string, 
 export const useGetCollection = <T>(collectionPath: string, converter: FirestoreDataConverter<T>) => {
     console.log('useGetDocument');
     checkFirestore();
-    console.log('firestore', firestore);
+    console.log('firestore', db);
 
-    return useGet(collection(firestore, collectionPath), converter);
+    return useGet(collection(db, collectionPath), converter);
 }
 
 export const useGetMultiple = <T>(path: string, converter: FirestoreDataConverter<T>, query: any = null) => {
     console.log('useGetDocument');
     checkFirestore();
-    console.log('firestore', firestore);
+    console.log('firestore', db);
 
-    return useGet(collection(firestore, path), converter, query);
+    return useGet(collection(db, path), converter, query);
 }
 
 const useGet = <T>(ref: Query<unknown, DocumentData>, converter: FirestoreDataConverter<T>, condition: any = null) => {
