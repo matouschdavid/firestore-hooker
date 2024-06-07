@@ -1,6 +1,6 @@
 {
   "name": "firestore-hooker",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Simple react hooks for Firebase Firestore",
   "repository": {
     "type": "git",

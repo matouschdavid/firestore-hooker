@@ -23,7 +23,9 @@ const checkFirestore = () => {
 }
 
 export const useGetDocument = <T>(collectionPath: string, docId: string, converter: FirestoreDataConverter<T>) => {
+    console.log('useGetDocument');
     checkFirestore();
+    console.log('firestore', firestore);
 
     const [data, setData] = useState<T>();
     const [loading, setLoading] = useState(true);
@@ -49,7 +51,9 @@ export const useGetDocument = <T>(collectionPath: string, docId: string, convert
 }
 
 export const useGetDocumentUpdates = <T>(collectionPath: string, docId: string, converter: FirestoreDataConverter<T>) => {
+    console.log('useGetDocument');
     checkFirestore();
+    console.log('firestore', firestore);
 
     const [data, setData] = useState<T>();
     const [loading, setLoading] = useState(true);
@@ -78,13 +82,17 @@ export const useGetDocumentUpdates = <T>(collectionPath: string, docId: string, 
 }
 
 export const useGetCollection = <T>(collectionPath: string, converter: FirestoreDataConverter<T>) => {
+    console.log('useGetDocument');
     checkFirestore();
+    console.log('firestore', firestore);
 
     return useGet(collection(firestore, collectionPath), converter);
 }
 
 export const useGetMultiple = <T>(path: string, converter: FirestoreDataConverter<T>, query: any = null) => {
+    console.log('useGetDocument');
     checkFirestore();
+    console.log('firestore', firestore);
 
     return useGet(collection(firestore, path), converter, query);
 }
